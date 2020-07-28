@@ -113,28 +113,28 @@ virtual void remove(size_t index, size_t segmentSize) override;
 Let's apply some basic mutations to the parent genome.  
 
 1. Overwrite mutation to site at index 2. Site has a new value of 44.  
-   | Key | Site Value | Remove Offset  | Insert Offset |  
-   | --- |:----------:|:--------------:| -------------:|  
-   |  2  |     44     |       0        |       0       |  
+| Key | Site Value | Remove Offset  | Insert Offset |  
+| --- |:----------:|:--------------:| -------------:|  
+|  2  |     44     |       0        |       0       |  
 
-   _Add entry to Changelog map at key 2. Site Value is set to 44. Since this is an overwrite mutation, the size of the parent genome is not affected. Remove Offset and Insert   offset are both set to zero._  
+_Add entry to Changelog map at key 2. Site Value is set to 44. Since this is an overwrite mutation, the size of the parent genome is not affected. Remove Offset and Insert   offset are both set to zero._  
 
 2. Remove mutation to site at index 4. Remove 2 sites.  
-   | Key | Site Value | Remove Offset  | Insert Offset |  
-   | --- |:----------:|:--------------:| -------------:|  
-   |  2  |     44     |       0        |       0       |  
-   |  4  |      0     |       2        |       0       |  
+| Key | Site Value | Remove Offset  | Insert Offset |  
+| --- |:----------:|:--------------:| -------------:|  
+|  2  |     44     |       0        |       0       |  
+|  4  |      0     |       2        |       0       |  
 
-   _Add entry to Changelog map at key 4. Site Value remains empty, since this is a remove mutation. Remove Offset is set to 2, the number of sites removed._  
+_Add entry to Changelog map at key 4. Site Value remains empty, since this is a remove mutation. Remove Offset is set to 2, the number of sites removed._  
 
 3. Insert mutation to site at index 1. The inserted site will have a value of 66  
-   | Key | Site Value | Remove Offset  | Insert Offset |  
-   | --- |:----------:|:--------------:| -------------:|  
-   |  1  |     66     |       0        |       1       |  
-   |  3  |     44     |       0        |       0       |  
-   |  5  |      0     |       2        |       0       |  
+| Key | Site Value | Remove Offset  | Insert Offset |  
+| --- |:----------:|:--------------:| -------------:|  
+|  1  |     66     |       0        |       1       |  
+|  3  |     44     |       0        |       0       |  
+|  5  |      0     |       2        |       0       |  
 
-   _Add entry to Changelog map at key 1. Site Value is set to 66. Insert Offset is set to 1, the number of sites inserted. Shift all remaining sites in changelog to the right by one._  
+_Add entry to Changelog map at key 1. Site Value is set to 66. Insert Offset is set to 1, the number of sites inserted. Shift all remaining sites in changelog to the right by one._  
    
 Great! All mutations have been recorded. Much like this rendition of Celine Dion's _My Heart Will Go On_, 
 > Insert youtube video here
