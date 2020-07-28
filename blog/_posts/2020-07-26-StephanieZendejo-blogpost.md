@@ -40,7 +40,8 @@ Mutations can occur in genomes. If an organism progresses to the next generation
 ### Genome Class
 > Genomes are often large, and undergo _several_ mutations.  
 
-The Genome Class in MABE sets aside a chunk of contiguous memory for every genome for the organisms that progress to the next generation. It then copies the parent genome over to the contiguous memory, applies the mutations, and voila! :tada: Offspring genomes are generated. Contiguous memory for genomes is assigned and written to at every next generation. If the frequency of generating offspring genomes was reduced, could the proposed method save **time** and **memory**?  
+The Genome Class in MABE sets aside a chunk of contiguous memory for every genome for the organisms that progress to the next generation. It then copies the parent genome over to the contiguous memory, applies the mutations, and voila! :tada: Offspring genomes are generated. Contiguous memory for genomes is assigned and written to at every next generation. If the frequency of generating offspring genomes was reduced, could the proposed method save  
+**time** and **memory**?  
 ![Loading Cat](https://i.imgur.com/6CLU31c.gif)  
 
 
@@ -96,6 +97,7 @@ The overwrite and insert signatures contain a segment vector as an argument. The
 > _site at index 6 with a value of 44_  
 > _site at index 7 with a value of 55_  
 > _site at index 8 with a value of 66_  
+
 ```c++
 virtual void overwrite(size_t index, const std::vector<std::byte>& segment); 
 		// Ex. Starting at index 5, overwrite 3 sites with the values 11, 22, 33
@@ -110,7 +112,7 @@ virtual void remove(size_t index, size_t segmentSize) override;
 ### Adding Entries In The Changelog
 Let's apply some basic mutations to the parent genome.  
 
-1. Overwrite mutation to site at index 2. Site has a new value of 44.
+1. Overwrite mutation to site at index 2. Site has a new value of 44.  
    | Key | Site Value | Remove Offset  | Insert Offset |  
    | --- |:----------:|:--------------:| -------------:|  
    |  2  |     44     |       0        |       0       |  
