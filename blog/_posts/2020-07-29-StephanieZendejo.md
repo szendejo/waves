@@ -8,8 +8,7 @@ author: Stephanie Zendejo
 # My Approach To The Changelog Problem
 > Changelog problem? An introduction to MABE and the problem can be found [here!](https://szendejo.github.io/waves/blog/Team-MABE.html)  
 
-The parent genome is represented as a **std::vector** of sites. Each site in the parent genome contains a numeric value that is represented as a **std::byte** in memory. The position of the site in the parent genome is the **index**.   
-A changelog is represented as an **ordered std::map<size_t, Site>**. Size_t is the index of the site mutated, and Site is the struct to contain the mutated site's information. The Site struct identifies what type of mutation has been applied to the site, and what the new value is (if applicable).  
+The parent genome is represented as a **std::vector** of sites. Each site in the parent genome contains a numeric value that is represented as a **std::byte** in memory. The position of the site in the parent genome is the **index**. A changelog is represented as an **ordered std::map<size_t, Site>**. Size_t is the index of the site mutated, and Site is the struct to contain the mutated site's information. The Site struct identifies what type of mutation has been applied to the site, and what the new value is (if applicable).  
 ```c++
 struct Site {
 	size_t insertOffset;  	  // insert mutation at site
@@ -49,6 +48,7 @@ The overwrite and insert signatures contain a **segment std::vector** as an argu
 > _site at index 6 with a value of 44_  
 > _site at index 7 with a value of 55_  
 > _site at index 8 with a value of 66_  
+
 ```c++
 virtual void overwrite(size_t index, const std::vector<std::byte>& segment); 
 		// Ex. Starting at index 5, overwrite 3 sites with the values 11, 22, 33
