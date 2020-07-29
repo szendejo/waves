@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Stephanie's Genome Class"
+title: ""
 date: 2020-07-29
 author: Stephanie Zendejo
 ---
