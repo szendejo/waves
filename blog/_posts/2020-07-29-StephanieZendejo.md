@@ -19,7 +19,8 @@ std::map<size_t, Site> changelog; // key is index of site in the parent genome
                                   // value is Site structure
 std::vector<std::byte> sites;     // parent genome
 ```  
-![Parent Genome in all its glory](https://i.imgur.com/mekOG1s.png)  
+<!-- ![Parent Genome in all its glory](https://i.imgur.com/mekOG1s.png) -->
+<img src="https://i.imgur.com/mekOG1s.png" width="600" height="65" border="10" />  
 **Figure Parent Genome.** Parent Genome contains values at each of its sites.  
 
 ### Mutation Signatures
@@ -28,6 +29,10 @@ Here's a basic idea of what each of the functions do. I followed the mantra of _
   * Loops through segment vector
   * Adds overwrite mutations to the changelog  
 ![OverWrite Example](https://i.imgur.com/wu7gBxK.gif)
+<a href="https://i.imgur.com/wu7gBxK.gif
+" target="_blank"><img src="https://i.imgur.com/B3HiqBW.jpg" 
+alt="Overwrite Example Gif" width="400" height="180" border="10" /></a>  
+_Click image to view gif_
 
 **Insert**  
   * Shift sites in the changelog to the right by size of the segment vector
