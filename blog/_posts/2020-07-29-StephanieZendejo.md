@@ -8,10 +8,8 @@ author: Stephanie Zendejo
 # My Approach To The Changelog Problem
 > Changelog problem? An introduction to MABE and the problem can be found [here!](https://szendejo.github.io/waves/blog/Team-MABE.html)  
 
-We can think of the parent genome as a std::vector of sites. Each site in the parent genome contains a numeric value that is represented as a byte in memory. The position of the site in the parent genome is the index.  
-![Parent Genome in all its glory](https://i.imgur.com/mekOG1s.png)
-
-A changelog is represented as a std::map<size_t, Site>. Size_t is the index of the site mutated, and Site is the struct to contain the mutated site's information. The Site struct identifies what type of mutation has been applied to the site, and what the new value is (if applicable).  
+The parent genome is represented as a std::vector of sites. Each site in the parent genome contains a numeric value that is represented as a byte in memory. The position of the site in the parent genome is the index.   
+A changelog is represented as an ordered std::map<size_t, Site>. Size_t is the index of the site mutated, and Site is the struct to contain the mutated site's information. The Site struct identifies what type of mutation has been applied to the site, and what the new value is (if applicable).  
 ```c++
 struct Site {
 	size_t insertOffset;  	  // insert mutation at site
@@ -21,7 +19,9 @@ struct Site {
 std::map<size_t, Site> changelog; // key is index of site in the parent genome
                                   // value is Site structure
 std::vector<std::byte> sites;     // parent genome
-```
+```  
+![Parent Genome in all its glory](https://i.imgur.com/mekOG1s.png)  
+**Figure Parent Genome.** Parent Genome contains values at each of its sites.
 ### Mutation Signatures
 Here's a basic idea of what each of the functions do. I followed the mantra of _when in doubt, shift it out_.  
 **Overwrite**  
