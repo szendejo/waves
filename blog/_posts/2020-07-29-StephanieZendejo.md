@@ -62,7 +62,7 @@ virtual void remove(size_t index, size_t segmentSize) override;
 
 ### Adding Entries In The Changelog
 Let's apply some basic mutations to a parent genome.  
-[Parent Genome Example](https://i.imgur.com/agc2bAi.png)
+![Parent Genome Example](https://i.imgur.com/agc2bAi.png)
 
 1. Overwrite mutation to site at index 2. The overwritten sites will have values of 11, 22, 33.  
 
@@ -102,7 +102,7 @@ Let's apply some basic mutations to a parent genome.
 Great! All mutations have been recorded. Much like this rendition of Celine Dion's _My Heart Will Go On_,  
 <a href="https://www.youtube.com/watch?v=X2WH8mHJnhM
 " target="_blank"><img src="https://i.imgur.com/EntZNrV.png" 
-alt="Flute Rendition of My Heart Will Go On" width="240" height="180" border="10" /></a>
+alt="Flute Rendition of My Heart Will Go On" width="450" height="240" border="10" /></a>  
 this genome ~~heart~~ will go on to the next generation. We're going to use the changelog on the parent genome to generate the offspring genome. 
 
 ### Generating The Offspring Genome  
