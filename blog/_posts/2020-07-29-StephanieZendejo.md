@@ -9,7 +9,11 @@ author: Stephanie Zendejo
 > Changelog problem? An introduction to MABE and the problem can be found [here!](https://szendejo.github.io/waves/blog/Team-MABE.html)  
 
 We can think of the parent genome as a std::vector of sites. Each site in the parent genome contains a numeric value that is represented as a byte in memory. The position of the site in the parent genome is the index.  
-Insert Parent Genome Here
+
+|   |   |   |   |   |   |    |   |
+| - | - | - | - | - | - | -  | - |
+| 2 | 3 | 4 | 1 | 2 | 0 | 4  | 1 |
+
 <!-- [Parent Genome in all its glory](https://i.imgur.com/mekOG1s.png) --->
 
 A changelog is represented as a std::map<size_t, Site>. Size_t is the index of the site mutated, and Site is the struct to contain the mutated site's information. The Site struct identifies what type of mutation has been applied to the site, and what the new value is (if applicable).  
@@ -68,7 +72,7 @@ virtual void remove(size_t index, size_t segmentSize) override;
 
 ### Adding Entries In The Changelog
 Let's apply some basic mutations to a parent genome.  
-> Insert Parent Genome picture here
+Insert Parent Genome picture here
 
 1. Overwrite mutation to site at index 2. The overwritten sites will have values of 11, 22, 33.  
 
@@ -111,7 +115,7 @@ Insert youtube video here
 this genome ~~heart~~ will go on to the next generation. We're going to use the changelog on the parent genome to generate the offspring genome. 
 
 ### Generating The Offspring Genome  
-A vector named modifiedSites contains the offspring genome. An iterator will loop through modifiedSites and populate the sites from either the changelog if they exist, or from the parent genome. 
+A vector named modifiedSites contains the offspring genome. Each position in modifiedSites will be populated from either the changelog if an entry exists, or from the parent genome. 
 Talk about the changelog insert and remove offsets and how that affects the index in the parent genome  
 ```c++
 void StephanieGenome::generateNewGenome() {
