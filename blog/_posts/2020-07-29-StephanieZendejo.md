@@ -28,24 +28,32 @@ Here's a basic idea of what each of the functions do. I followed the mantra of _
 **Overwrite**  
   * Loops through segment vector
   * Adds overwrite mutations to the changelog  
-![OverWrite Example](https://i.imgur.com/wu7gBxK.gif)
+<!--![OverWrite Example](https://i.imgur.com/wu7gBxK.gif) -->
 <a href="https://i.imgur.com/wu7gBxK.gif
 " target="_blank"><img src="https://i.imgur.com/B3HiqBW.jpg" 
 alt="Overwrite Example Gif" width="400" height="180" border="10" /></a>  
-_Click image to view gif_
+_Click image to view_  
 
 **Insert**  
   * Shift sites in the changelog to the right by size of the segment vector
   * Loops through segment vector
   * Adds insert mutations to the changelog  
-![Insert Example](https://i.imgur.com/0rZ4Bai.gif)
+<!--![Insert Example](https://i.imgur.com/0rZ4Bai.gif) -->
+<a href="https://i.imgur.com/0rZ4Bai.gif
+" target="_blank"><img src="https://i.imgur.com/0lcBnvV.jpg" 
+alt="Overwrite Example Gif" width="400" height="180" border="10" /></a>  
+_Click image to view_  
 
 **Remove**  
   * Removes sites in the changelog if they exist
      * Takes into account if sites removed in the changelog had insert or remove mutations
   * Shift sites in the changelog to the left
   * Adds remove mutation to the changelog  
-![Remove Example](https://i.imgur.com/tus7plB.gif)
+<!-- ![Remove Example](https://i.imgur.com/tus7plB.gif) -->
+<a href="https://i.imgur.com/tus7plB.gif
+" target="_blank"><img src="https://i.imgur.com/6EihJZ9.jpg" 
+alt="Overwrite Example Gif" width="400" height="180" border="10" /></a>  
+_Click image to view_  
 
  
 The overwrite and insert signatures contain a **segment std::vector** as an argument. The segment vector is a collection of mutations that will be added to the changelog starting at the given index. 
@@ -67,7 +75,8 @@ virtual void remove(size_t index, size_t segmentSize) override;
 
 ### Adding Entries In The Changelog
 Let's apply some basic mutations to a parent genome.  
-![Parent Genome Example](https://i.imgur.com/agc2bAi.png)
+<!--![Parent Genome Example](https://i.imgur.com/agc2bAi.png) -->
+<img src="https://i.imgur.com/agc2bAi.png" width="600" height="65" border="10" />  
 
 1. Overwrite mutation to site at index 2. The overwritten sites will have values of 11, 22, 33.  
 
