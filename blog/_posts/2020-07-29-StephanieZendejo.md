@@ -108,9 +108,9 @@ alt="Flute Rendition of My Heart Will Go On" width="450" height="240" border="10
 this genome ~~heart~~ will go on to the next generation.
 
 ### Generating The Offspring Genome  
-A vector named modifiedSites contains the offspring genome. Each position in the modifiedSites vector will be populated from either the changelog if an entry exists, or from the parent genome. 
-Talk about the changelog insert and remove offsets and how that affects the index in the parent genome  
-```c++
+A **std::vector** named modifiedSites contains the offspring genome. Each position in the modifiedSites vector will be populated from either the changelog if an entry exists, or from the parent genome. 
+_Talk about the changelog insert and remove offsets and how that affects the index in the parent genome_  
+```c
 void StephanieGenome::generateNewGenome() {
 	modifiedSites.resize(genomeSize);
 	int offset = 0;
