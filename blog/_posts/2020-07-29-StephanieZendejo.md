@@ -5,7 +5,7 @@ date: 2020-07-29
 author: Stephanie Zendejo
 ---
 
-# Stephanie's Approach To The Changelog Problem
+# My Approach To The Changelog Problem
 > Changelog problem? Huh? An introduction MABE and the changelog problem can be found [here](https://szendejo.github.io/waves/blog/Team-MABE.html)  
 
 We can think of the parent genome as a std::vector of sites. Each site in the parent genome contains a numeric value that is represented as a byte in memory. The position of the site in the parent genome is the index.
