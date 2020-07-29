@@ -24,7 +24,7 @@ std::vector<std::byte> sites;     // parent genome
 **Figure Parent Genome.** Parent Genome contains values at each of its sites.  
 
 ### Mutation Signatures
-Here's a basic idea of what each of the functions do. I followed the mantra of _when in doubt, shift it out_.  
+Here's a basic idea of what each of the functions do. I followed the mantra of _when in doubt, shift it out_. To view the mutations in action, click on the linked images.  
 **Overwrite**  
   * Loops through segment vector
   * Adds overwrite mutations to the changelog  
@@ -32,7 +32,6 @@ Here's a basic idea of what each of the functions do. I followed the mantra of _
 <a href="https://i.imgur.com/wu7gBxK.gif
 " target="_blank"><img src="https://i.imgur.com/B3HiqBW.jpg" 
 alt="Overwrite Example Gif" width="400" height="180" border="10" /></a>  
-_Click image to view_  
 
 **Insert**  
   * Shift sites in the changelog to the right by size of the segment vector
@@ -41,8 +40,7 @@ _Click image to view_
 <!--![Insert Example](https://i.imgur.com/0rZ4Bai.gif) -->
 <a href="https://i.imgur.com/0rZ4Bai.gif
 " target="_blank"><img src="https://i.imgur.com/0lcBnvV.jpg" 
-alt="Overwrite Example Gif" width="400" height="180" border="10" /></a>  
-_Click image to view_  
+alt="Overwrite Example Gif" width="500" height="180" border="10" /></a>  
 
 **Remove**  
   * Removes sites in the changelog if they exist
@@ -53,7 +51,6 @@ _Click image to view_
 <a href="https://i.imgur.com/tus7plB.gif
 " target="_blank"><img src="https://i.imgur.com/6EihJZ9.jpg" 
 alt="Overwrite Example Gif" width="400" height="180" border="10" /></a>  
-_Click image to view_  
 
  
 The overwrite and insert signatures contain a **segment std::vector** as an argument. The segment vector is a collection of mutations that will be added to the changelog starting at the given index. 
@@ -76,7 +73,7 @@ virtual void remove(size_t index, size_t segmentSize) override;
 ### Adding Entries In The Changelog
 Let's apply some basic mutations to a parent genome.  
 <!--![Parent Genome Example](https://i.imgur.com/agc2bAi.png) -->
-<img src="https://i.imgur.com/agc2bAi.png" width="600" height="65" border="10" />  
+<img src="https://i.imgur.com/agc2bAi.png" width="600" height="45" border="10" />  
 
 1. Overwrite mutation to site at index 2. The overwritten sites will have values of 11, 22, 33.  
 
@@ -122,8 +119,7 @@ alt="Flute Rendition of My Heart Will Go On" width="450" height="240" border="10
 this genome ~~heart~~ will go on to the next generation.
 
 ### Generating The Offspring Genome  
-A **std::vector** named modifiedSites contains the offspring genome. Each position in the modifiedSites vector will be populated from either the changelog if an entry exists, or from the parent genome. 
-_Talk about the changelog insert and remove offsets and how that affects the index in the parent genome_  
+A **std::vector** named **modifiedSites** contains the offspring genome. Each position in the modifiedSites vector will be populated from either the changelog if an entry exists, or from the parent genome. Every insert mutation in the changelog increases the parent genome size by one. Every remove mutation in the changelog decreases the parent genome by the number of sites removed.  
 ```c
 void StephanieGenome::generateNewGenome() {
 	modifiedSites.resize(genomeSize);
