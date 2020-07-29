@@ -6,7 +6,7 @@ author: Stephanie Zendejo
 ---
 
 # My Approach To The Changelog Problem
-> Changelog problem? Huh? An introduction MABE and the changelog problem can be found [here](https://szendejo.github.io/waves/blog/Team-MABE.html)  
+> Changelog problem? An introduction to MABE and the problem can be found [here!](https://szendejo.github.io/waves/blog/Team-MABE.html)  
 
 We can think of the parent genome as a std::vector of sites. Each site in the parent genome contains a numeric value that is represented as a byte in memory. The position of the site in the parent genome is the index.
 Insert Parent Genome Here
@@ -91,7 +91,7 @@ Let's apply some basic mutations to a parent genome.
 |  6  |     22     |       0        |       0       |    
 |  7  |     33     |       0        |       0       |  
 
-_Shift all sites in the Changelog to the right by 3, the number of sites inserted. Site at key 2 becomes site at key 5. Add entries to the Changelog map starting at index 1 with their values. Because these are insert mutations, Insert Offset is set to 1. Offspring genome size increases by 3._  
+> _Shift all sites in the Changelog to the right by 3, the number of sites inserted. Site at key 2 becomes site at key 5. Add entries to the Changelog map starting at index 1 with their values. Because these are insert mutations, Insert Offset is set to 1. Offspring genome size increases by 3._  
  
 3. Remove mutation to site at index 6. Remove 3 sites.   
 
@@ -103,7 +103,7 @@ _Shift all sites in the Changelog to the right by 3, the number of sites inserte
 |  5  |     11     |       0        |       0       |    
 |  6  |      0     |       3        |       0       |   
 
-_Starting at index 6, sites 6 7 and 8 will be removed. Sites 6 and 7 exist in the Changelog. They are not insert or remove mutations so they can be easily removed. A new entry is added at site 6, with a Remove Offset of 3.
+> _Starting at index 6, sites 6 7 and 8 will be removed. Sites 6 and 7 exist in the Changelog. They are not insert or remove mutations so they can be easily removed. A new entry is added at site 6, with a Remove Offset of 3.
 
 Great! All mutations have been recorded. Much like this rendition of Celine Dion's _My Heart Will Go On_, 
 > Insert youtube video here
