@@ -9,12 +9,7 @@ author: Stephanie Zendejo
 > Changelog problem? An introduction to MABE and the problem can be found [here!](https://szendejo.github.io/waves/blog/Team-MABE.html)  
 
 We can think of the parent genome as a std::vector of sites. Each site in the parent genome contains a numeric value that is represented as a byte in memory. The position of the site in the parent genome is the index.  
-
-|   |   |   |   |   |   |    |   |
-| - | - | - | - | - | - | -  | - |
-| 2 | 3 | 4 | 1 | 2 | 0 | 4  | 1 |
-
-<!-- [Parent Genome in all its glory](https://i.imgur.com/mekOG1s.png) --->
+![Parent Genome in all its glory](https://i.imgur.com/mekOG1s.png)
 
 A changelog is represented as a std::map<size_t, Site>. Size_t is the index of the site mutated, and Site is the struct to contain the mutated site's information. The Site struct identifies what type of mutation has been applied to the site, and what the new value is (if applicable).  
 ```c++
@@ -32,26 +27,20 @@ Here's a basic idea of what each of the functions do. I followed the mantra of _
 **Overwrite**  
   * Loops through segment vector
   * Adds overwrite mutations to the changelog  
-  
-Insert Overwrite Mutation Gif here  
-<!-- ![OverWrite Example](https://i.imgur.com/wu7gBxK.gif) -->
+![OverWrite Example](https://i.imgur.com/wu7gBxK.gif)
 
 **Insert**  
   * Shift sites in the changelog to the right by size of the segment vector
   * Loops through segment vector
   * Adds insert mutations to the changelog  
-  
-Insert Insert Mutation Gif here  
-<!-- ![Insert Example](https://i.imgur.com/0rZ4Bai.gif) -->
+![Insert Example](https://i.imgur.com/0rZ4Bai.gif)
 
 **Remove**  
   * Removes sites in the changelog if they exist
      * Takes into account if sites removed in the changelog had insert or remove mutations
   * Shift sites in the changelog to the left
   * Adds remove mutation to the changelog  
-  
-Insert Remove Mutation Gif here   
-<!-- ![Remove Example](https://i.imgur.com/tus7plB.gif) -->
+![Remove Example](https://i.imgur.com/tus7plB.gif)
 
  
 The overwrite and insert signatures contain a segment vector as an argument. The segment vector is a collection of mutations that will be added to the changelog starting at the given index. 
@@ -115,7 +104,7 @@ Insert youtube video here
 this genome ~~heart~~ will go on to the next generation. We're going to use the changelog on the parent genome to generate the offspring genome. 
 
 ### Generating The Offspring Genome  
-A vector named modifiedSites contains the offspring genome. Each position in modifiedSites will be populated from either the changelog if an entry exists, or from the parent genome. 
+A vector named modifiedSites contains the offspring genome. Each position in the modifiedSites vector will be populated from either the changelog if an entry exists, or from the parent genome. 
 Talk about the changelog insert and remove offsets and how that affects the index in the parent genome  
 ```c++
 void StephanieGenome::generateNewGenome() {
