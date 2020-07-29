@@ -100,10 +100,12 @@ Let's apply some basic mutations to a parent genome.
 > _Starting at index 6, sites 6 7 and 8 will be removed. Sites 6 and 7 exist in the Changelog. They are not insert or remove mutations so they can be easily removed. A new entry is added at site 6, with a Remove Offset of 3._
 
 Great! All mutations have been recorded. Much like this rendition of Celine Dion's _My Heart Will Go On_,  
+
 <a href="https://www.youtube.com/watch?v=X2WH8mHJnhM
 " target="_blank"><img src="https://i.imgur.com/EntZNrV.png" 
 alt="Flute Rendition of My Heart Will Go On" width="450" height="240" border="10" /></a>  
-this genome ~~heart~~ will go on to the next generation. We're going to use the changelog on the parent genome to generate the offspring genome. 
+
+this genome ~~heart~~ will go on to the next generation.
 
 ### Generating The Offspring Genome  
 A vector named modifiedSites contains the offspring genome. Each position in the modifiedSites vector will be populated from either the changelog if an entry exists, or from the parent genome. 
