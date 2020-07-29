@@ -108,20 +108,42 @@ Let's apply some basic mutations to a parent genome.
 Great! All mutations have been recorded. Much like this rendition of Celine Dion's _My Heart Will Go On_,  
 Insert youtube video here  
 <!--- https://www.youtube.com/watch?v=X2WH8mHJnhM -->
-this genome~~'s heart~~ will go on to the next generation. We're going to use the changelog on the parent genome to generate the offspring genome. 
+this genome ~~heart~~ will go on to the next generation. We're going to use the changelog on the parent genome to generate the offspring genome. 
 
 ### Generating The Offspring Genome  
 A vector named modifiedSites contains the offspring genome. An iterator will loop through modifiedSites and populate the sites from either the changelog if they exist, or from the parent genome. 
 Talk about the changelog insert and remove offsets and how that affects the index in the parent genome  
 ```c++
-virtual void overwrite(size_t index, const std::vector<std::byte>& segment); 
-		// Ex. Starting at index 5, overwrite 3 sites with the values 11, 22, 33
+void StephanieGenome::generateNewGenome() {
+	modifiedSites.resize(genomeSize);
+	int offset = 0;
 
-virtual void insert(size_t index, const std::vector<std::byte>& segment);    
-		// Ex. Starting at index 6, insert 3 new sites with the values 44, 55, 66
+	// Create an offspring genome
+	for (int i = 0; i < genomeSize; i++) {
 
-virtual void remove(size_t index, size_t segmentSize) override; 	     
-		// Ex. At index 7, remove 3 sites
+		// Index does not exist in the changelog
+		if (!changelog.count(i)) {
+			modifiedSites[i] = sites[i + offset];
+		}
+
+		// Index exists in changelog and site is a overwrite mutation
+		else if (changelog.count(i) && (changelog[i].removeOffset == 0 && changelog[i].insertOffset == 0)) {
+			modifiedSites[i] = changelog[i].value;
+		}
+
+		// Index exists in changelog and site is an insert mutation
+		else if (changelog.count(i) && changelog[i].insertOffset > 0) {
+			modifiedSites[i] = changelog[i].value;
+			offset -= 1;
+		}
+
+		// Index exists in changelog and site is a remove mutation
+		else if (changelog.count(i) && changelog[i].removeOffset > 0) {
+			offset += (int)changelog[i].removeOffset;
+			modifiedSites[i] = sites[i + offset];
+		}
+	}
+}
 ```  
 Insert gif about reading changelog and the index in parent genome and offset genome
 
