@@ -8,11 +8,11 @@ author: Stephanie Zendejo
 # My Approach To The Changelog Problem
 > Changelog problem? An introduction to MABE and the problem can be found [here!](https://szendejo.github.io/waves/blog/Team-MABE.html)  
 
-We can think of the parent genome as a std::vector of sites. Each site in the parent genome contains a numeric value that is represented as a byte in memory. The position of the site in the parent genome is the index.
+We can think of the parent genome as a std::vector of sites. Each site in the parent genome contains a numeric value that is represented as a byte in memory. The position of the site in the parent genome is the index.  
 Insert Parent Genome Here
 <!-- [Parent Genome in all its glory](https://i.imgur.com/mekOG1s.png) --->
 
-A changelog is represented as a std::map<size_t, Site>. Size_t is the index of the site mutated, and Site is the struct to contain the mutated site's information. The Site struct identifies what type of mutation has been applied to the site, and what the new value is (if applicable).
+A changelog is represented as a std::map<size_t, Site>. Size_t is the index of the site mutated, and Site is the struct to contain the mutated site's information. The Site struct identifies what type of mutation has been applied to the site, and what the new value is (if applicable).  
 ```c++
 struct Site {
 	size_t insertOffset;  	  // insert mutation at site
@@ -103,18 +103,27 @@ Let's apply some basic mutations to a parent genome.
 |  5  |     11     |       0        |       0       |    
 |  6  |      0     |       3        |       0       |   
 
-> _Starting at index 6, sites 6 7 and 8 will be removed. Sites 6 and 7 exist in the Changelog. They are not insert or remove mutations so they can be easily removed. A new entry is added at site 6, with a Remove Offset of 3.
+> _Starting at index 6, sites 6 7 and 8 will be removed. Sites 6 and 7 exist in the Changelog. They are not insert or remove mutations so they can be easily removed. A new entry is added at site 6, with a Remove Offset of 3._
 
-Great! All mutations have been recorded. Much like this rendition of Celine Dion's _My Heart Will Go On_, 
-> Insert youtube video here
+Great! All mutations have been recorded. Much like this rendition of Celine Dion's _My Heart Will Go On_,  
+Insert youtube video here  
 <!--- https://www.youtube.com/watch?v=X2WH8mHJnhM -->
 this genome~~'s heart~~ will go on to the next generation. We're going to use the changelog on the parent genome to generate the offspring genome. 
 
 ### Generating The Offspring Genome  
 A vector named modifiedSites contains the offspring genome. An iterator will loop through modifiedSites and populate the sites from either the changelog if they exist, or from the parent genome. 
-Talk about the changelog insert and remove offsets and how that affects the index in the parent genome
-> Insert code
-> Insert gif about reading changelog and the index in parent genome and offset genome
+Talk about the changelog insert and remove offsets and how that affects the index in the parent genome  
+```c++
+virtual void overwrite(size_t index, const std::vector<std::byte>& segment); 
+		// Ex. Starting at index 5, overwrite 3 sites with the values 11, 22, 33
+
+virtual void insert(size_t index, const std::vector<std::byte>& segment);    
+		// Ex. Starting at index 6, insert 3 new sites with the values 44, 55, 66
+
+virtual void remove(size_t index, size_t segmentSize) override; 	     
+		// Ex. At index 7, remove 3 sites
+```  
+Insert gif about reading changelog and the index in parent genome and offset genome
 
 # Time vs. Memory  
 ## Benchmarking  
