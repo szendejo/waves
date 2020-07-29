@@ -4,18 +4,6 @@ title: ""
 date: 2020-07-29
 author: Stephanie Zendejo
 ---
-<!--- Style Tags for Playing Gif on Hover -->
-<style>
-.static {
-  position:absolute;
-  background: white;
-}
-
-.static:hover {
-  opacity:0;
-}
-</style>
-
 
 # My Approach To The Changelog Problem
 > Changelog problem? An introduction to MABE and the problem can be found [here!](https://szendejo.github.io/waves/blog/Team-MABE.html)  
@@ -40,7 +28,6 @@ Here's a basic idea of what each of the functions do. I followed the mantra of _
   * Loops through segment vector
   * Adds overwrite mutations to the changelog  
 ![OverWrite Example](https://i.imgur.com/wu7gBxK.gif)
-<img class="static" src="https://i.imgur.com/rU8VGHT.jpg"><img class="active" src="https://i.imgur.com/wu7gBxK.gif">  
 
 **Insert**  
   * Shift sites in the changelog to the right by size of the segment vector
