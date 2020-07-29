@@ -8,8 +8,8 @@ author: Stephanie Zendejo
 # My Approach To The Changelog Problem
 > Changelog problem? An introduction to MABE and the problem can be found [here!](https://szendejo.github.io/waves/blog/Team-MABE.html)  
 
-The parent genome is represented as a std::vector of sites. Each site in the parent genome contains a numeric value that is represented as a byte in memory. The position of the site in the parent genome is the index.   
-A changelog is represented as an ordered std::map<size_t, Site>. Size_t is the index of the site mutated, and Site is the struct to contain the mutated site's information. The Site struct identifies what type of mutation has been applied to the site, and what the new value is (if applicable).  
+The parent genome is represented as a **std::vector** of sites. Each site in the parent genome contains a numeric value that is represented as a **std::byte** in memory. The position of the site in the parent genome is the **index**.   
+A changelog is represented as an **ordered std::map<size_t, Site>**. Size_t is the index of the site mutated, and Site is the struct to contain the mutated site's information. The Site struct identifies what type of mutation has been applied to the site, and what the new value is (if applicable).  
 ```c++
 struct Site {
 	size_t insertOffset;  	  // insert mutation at site
@@ -21,7 +21,8 @@ std::map<size_t, Site> changelog; // key is index of site in the parent genome
 std::vector<std::byte> sites;     // parent genome
 ```  
 ![Parent Genome in all its glory](https://i.imgur.com/mekOG1s.png)  
-**Figure Parent Genome.** Parent Genome contains values at each of its sites.
+**Figure Parent Genome.** Parent Genome contains values at each of its sites.  
+
 ### Mutation Signatures
 Here's a basic idea of what each of the functions do. I followed the mantra of _when in doubt, shift it out_.  
 **Overwrite**  
@@ -43,7 +44,7 @@ Here's a basic idea of what each of the functions do. I followed the mantra of _
 ![Remove Example](https://i.imgur.com/tus7plB.gif)
 
  
-The overwrite and insert signatures contain a segment vector as an argument. The segment vector is a collection of mutations that will be added to the changelog starting at the given index. 
+The overwrite and insert signatures contain a **segment std::vector** as an argument. The segment vector is a collection of mutations that will be added to the changelog starting at the given index. 
 > _insert(6, {44, 55, 66}) is the equivalent of inserting the following mutations to the changelog:_   
 > _site at index 6 with a value of 44_  
 > _site at index 7 with a value of 55_  
@@ -61,7 +62,7 @@ virtual void remove(size_t index, size_t segmentSize) override;
 
 ### Adding Entries In The Changelog
 Let's apply some basic mutations to a parent genome.  
-Insert Parent Genome picture here
+[Parent Genome Example](https://i.imgur.com/agc2bAi.png)
 
 1. Overwrite mutation to site at index 2. The overwritten sites will have values of 11, 22, 33.  
 
@@ -99,8 +100,9 @@ Insert Parent Genome picture here
 > _Starting at index 6, sites 6 7 and 8 will be removed. Sites 6 and 7 exist in the Changelog. They are not insert or remove mutations so they can be easily removed. A new entry is added at site 6, with a Remove Offset of 3._
 
 Great! All mutations have been recorded. Much like this rendition of Celine Dion's _My Heart Will Go On_,  
-Insert youtube video here  
-<!--- https://www.youtube.com/watch?v=X2WH8mHJnhM -->
+<a href="https://www.youtube.com/watch?v=X2WH8mHJnhM
+" target="_blank"><img src="https://i.imgur.com/EntZNrV.png" 
+alt="Flute Rendition of My Heart Will Go On" width="240" height="180" border="10" /></a>
 this genome ~~heart~~ will go on to the next generation. We're going to use the changelog on the parent genome to generate the offspring genome. 
 
 ### Generating The Offspring Genome  
