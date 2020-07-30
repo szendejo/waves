@@ -134,10 +134,9 @@ Let's apply some basic mutations to a parent genome.
 |  1  |     44     |       0        |       1       |    
 |  2  |     55     |       0        |       1       |    
 |  3  |     66     |       0        |       1       |   
-|  5  |     11     |       0        |       0       |
 |  6  |      0     |       3        |       0       |   
 
-> _Starting at index 5, sites 5 through 8 will be removed. The affected overwrite and insert mutations sites are removed. The remaining sites in the changel  A new entry is added at site 6, with a Remove Offset of 3._     
+> _Starting at index 5, sites 5 6 7 will be removed. The affected overwrite and insert mutations sites are removed. The remaining sites in the changelog are shifted over to the left by 3, the number of sites removed. Site at key 8 becomes site at key 5._     
   
 
 Great! All mutations have been recorded. Much like this rendition of Celine Dion's _My Heart Will Go On_,  
