@@ -79,64 +79,54 @@ Let's apply some basic mutations to a parent genome.
 <img src="https://i.imgur.com/agc2bAi.png" width="600" height="45" border="10" />  
 
 1. Overwrite mutation to site at index 2. The overwritten sites will have values of 11, 22, 33.  
-
-| Key | Site Value | Remove Offset  | Insert Offset |  
-| --- |:----------:|:--------------:| -------------:|  
-|  2  |     11     |       0        |       0       |    
-|  3  |     22     |       0        |       0       |    
-|  4  |     33     |       0        |       0       |  
-
-> _Segment vector contains 3 site values. Starting at index 2, each site value will be either added in the Changelog or edited if it exists. Index key 2 does not exist, so it's inserted in the Changelog. Site Value is set to 44. Since this is an overwrite mutation, the size of the offspring genome is not affected. Remove Offset and Insert offset are both set to zero. The steps are repeated for each site value in the segment vector._    
+   | Key | Site Value | Remove Offset  | Insert Offset |  
+   | --- |:----------:|:--------------:| -------------:|  
+   |  2  |     11     |       0        |       0       |    
+   |  3  |     22     |       0        |       0       |    
+   |  4  |     33     |       0        |       0       |  
+   > _Segment vector contains 3 site values. Starting at index 2, each site value will be either added in the Changelog or edited if it exists. Index key 2 does   not exist, so it's inserted in the Changelog. Site Value is set to 44. Since this is an overwrite mutation, the size of the offspring genome is not affected. Remove Offset and Insert offset are both set to zero. The steps are repeated for each site value in the segment vector._    
 
 2. Insert mutation to site at index 1. The inserted site will have values of 44, 55, 66.  
-
-| Key | Site Value | Remove Offset  | Insert Offset |   
-| --- |:----------:|:--------------:| -------------:|  
-|  1  |     44     |       0        |       1       |    
-|  2  |     55     |       0        |       1       |    
-|  3  |     66     |       0        |       1       |   
-|  5  |     11     |       0        |       0       |    
-|  6  |     22     |       0        |       0       |    
-|  7  |     33     |       0        |       0       |  
-
-> _Shift all sites in the Changelog to the right by 3, the number of sites inserted. Site at key 2 becomes site at key 5. Add entries to the Changelog map starting at index 1 with their values. Because these are insert mutations, Insert Offset is set to 1. Offspring genome size increases by 3._  
+   | Key | Site Value | Remove Offset  | Insert Offset |   
+   | --- |:----------:|:--------------:| -------------:|  
+   |  1  |     44     |       0        |       1       |    
+   |  2  |     55     |       0        |       1       |    
+   |  3  |     66     |       0        |       1       |   
+   |  5  |     11     |       0        |       0       |    
+   |  6  |     22     |       0        |       0       |    
+   |  7  |     33     |       0        |       0       |  
+   > _Shift all sites in the Changelog to the right by 3, the number of sites inserted. Site at key 2 becomes site at key 5. Add entries to the Changelog map starting at index 1 with their values. Because these are insert mutations, Insert Offset is set to 1. Offspring genome size increases by 3._  
  
 3. Remove mutation to site at index 6. Remove 3 sites.   
-
-| Key | Site Value | Remove Offset  | Insert Offset |   
-| --- |:----------:|:--------------:| -------------:|  
-|  1  |     44     |       0        |       1       |    
-|  2  |     55     |       0        |       1       |    
-|  3  |     66     |       0        |       1       |   
-|  5  |     11     |       0        |       0       |    
-|  6  |      0     |       3        |       0       |   
-
-> _Starting at index 6, sites 6 7 and 8 will be removed. Sites 6 and 7 exist in the Changelog. The overwrite mutations are removed. A new entry is added at site 6, with a Remove Offset of 3._    
+   | Key | Site Value | Remove Offset  | Insert Offset |   
+   | --- |:----------:|:--------------:| -------------:|  
+   |  1  |     44     |       0        |       1       |    
+   |  2  |     55     |       0        |       1       |    
+   |  3  |     66     |       0        |       1       |   
+   |  5  |     11     |       0        |       0       |    
+   |  6  |      0     |       3        |       0       |   
+   > _Starting at index 6, sites 6 7 and 8 will be removed. Sites 6 and 7 exist in the Changelog. The overwrite mutations are removed. A new entry is added at site 6, with a Remove Offset of 3._    
 
 4. Insert mutation to site at index 6. The inserted site will have values of 88, 99.  
-
-| Key | Site Value | Remove Offset  | Insert Offset |   
-| --- |:----------:|:--------------:| -------------:|  
-|  1  |     44     |       0        |       1       |    
-|  2  |     55     |       0        |       1       |    
-|  3  |     66     |       0        |       1       |   
-|  5  |     11     |       0        |       0       |    
-|  6  |     88     |       0        |       1       |       
-|  7  |     99     |       0        |       1       |       
-|  8  |      0     |       3        |       0       |   
-
-> _Shift all sites in the Changelog to the right by 2, the number of sites inserted. Site at key 6 becomes site at key 8. Add entries to the Changelog map starting at index 6 with their values. Because these are insert mutations, Insert Offset is set to 1. Offspring genome size increases by 2._    
+   | Key | Site Value | Remove Offset  | Insert Offset |   
+   | --- |:----------:|:--------------:| -------------:|  
+   |  1  |     44     |       0        |       1       |    
+   |  2  |     55     |       0        |       1       |    
+   |  3  |     66     |       0        |       1       |   
+   |  5  |     11     |       0        |       0       |    
+   |  6  |     88     |       0        |       1       |       
+   |  7  |     99     |       0        |       1       |       
+   |  8  |      0     |       3        |       0       |   
+   > _Shift all sites in the Changelog to the right by 2, the number of sites inserted. Site at key 6 becomes site at key 8. Add entries to the Changelog map starting at index 6 with their values. Because these are insert mutations, Insert Offset is set to 1. Offspring genome size increases by 2._    
 
 5. Remove mutation to site at index 5. Remove 3 sites.  
-
-| Key | Site Value | Remove Offset  | Insert Offset |   
-| --- |:----------:|:--------------:| -------------:|  
-|  1  |     44     |       0        |       1       |    
-|  2  |     55     |       0        |       1       |    
-|  3  |     66     |       0        |       1       |   
-|  6  |      0     |       3        |       0       |   
-
-> _Starting at index 5, sites 5 6 7 will be removed. The affected overwrite and insert mutations sites are removed. The remaining sites in the changelog are shifted over to the left by 3, the number of sites removed. Site at key 8 becomes site at key 5._     
+   | Key | Site Value | Remove Offset  | Insert Offset |   
+   | --- |:----------:|:--------------:| -------------:|  
+   |  1  |     44     |       0        |       1       |    
+   |  2  |     55     |       0        |       1       |    
+   |  3  |     66     |       0        |       1       |   
+   |  6  |      0     |       3        |       0       |   
+   > _Starting at index 5, sites 5 6 7 will be removed. The affected overwrite and insert mutations sites are removed. The remaining sites in the changelog are shifted over to the left by 3, the number of sites removed. Site at key 8 becomes site at key 5._     
   
 
 Great! All mutations have been recorded. Much like this rendition of Celine Dion's _My Heart Will Go On_,  
