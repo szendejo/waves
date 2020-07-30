@@ -111,7 +111,7 @@ Let's apply some basic mutations to a parent genome.
 |  5  |     11     |       0        |       0       |    
 |  6  |      0     |       3        |       0       |   
 
-> _Starting at index 6, sites 6 7 and 8 will be removed. Sites 6 and 7 exist in the Changelog. They are not insert or remove mutations so they can be easily removed. A new entry is added at site 6, with a Remove Offset of 3._    
+> _Starting at index 6, sites 6 7 and 8 will be removed. Sites 6 and 7 exist in the Changelog. The overwrite mutations are removed. A new entry is added at site 6, with a Remove Offset of 3._    
 
 4. Insert mutation to site at index 6. The inserted site will have values of 88, 99.  
 
@@ -127,19 +127,17 @@ Let's apply some basic mutations to a parent genome.
 
 > _Shift all sites in the Changelog to the right by 2, the number of sites inserted. Site at key 6 becomes site at key 8. Add entries to the Changelog map starting at index 6 with their values. Because these are insert mutations, Insert Offset is set to 1. Offspring genome size increases by 2._    
 
-5. Remove mutation to site at index 5. Remove 4 sites.  
+5. Remove mutation to site at index 5. Remove 3 sites.  
 
 | Key | Site Value | Remove Offset  | Insert Offset |   
 | --- |:----------:|:--------------:| -------------:|  
 |  1  |     44     |       0        |       1       |    
 |  2  |     55     |       0        |       1       |    
 |  3  |     66     |       0        |       1       |   
-|  5  |     11     |       0        |       0       |    
-|  6  |     88     |       0        |       1       |       
-|  7  |     99     |       0        |       1       |       
-|  8  |      0     |       3        |       0       |   
+|  5  |     11     |       0        |       0       |
+|  6  |      0     |       3        |       0       |   
 
-> _Starting at index 6, sites 6 7 and 8 will be removed. Sites 6 and 7 exist in the Changelog. They are not insert or remove mutations so they can be easily removed. A new entry is added at site 6, with a Remove Offset of 3._     
+> _Starting at index 5, sites 5 through 8 will be removed. The affected overwrite and insert mutations sites are removed. The remaining sites in the changel  A new entry is added at site 6, with a Remove Offset of 3._     
   
 
 Great! All mutations have been recorded. Much like this rendition of Celine Dion's _My Heart Will Go On_,  
