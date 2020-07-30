@@ -181,8 +181,7 @@ void StephanieGenome::generateNewGenome() {
 	}
 }
 ```  
-Insert gif about reading changelog and the index in parent genome and offset genome
-
+![Changelog Gif](https://i.imgur.com/djVEX3n.gif)
 # Time vs. Memory  
 ## Benchmarking  
 Talk about benchmarks  
