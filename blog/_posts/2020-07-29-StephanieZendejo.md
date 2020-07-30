@@ -69,7 +69,7 @@ virtual void overwrite(size_t index, const std::vector<std::byte>& segment);
 virtual void insert(size_t index, const std::vector<std::byte>& segment);    
 		// Ex. Starting at index 6, insert 3 new sites with the values 44, 55, 66
 
-virtual void remove(size_t index, size_t segmentSize) override; 	     
+virtual void remove(size_t index, size_t segmentSize); 	     
 		// Ex. At index 7, remove 3 sites
 ```
 
@@ -187,9 +187,9 @@ A position counter starts at 0 in the parent genome. An index counter starts at 
    * Remove mutation, offset is added by the remove offset value   
 * Index does not exist in changelog, new position of the parent genome is calculated  
    * New position = index + offset.  
-   _ex. index 4 does not exist in the changelog and the offset = -3  
-   new position in parent genome = 4 + (-3) = 2  
-   get value in parent genome at position 2_  
+   _ex. index 4 does not exist in the changelog and the offset = -3_  
+   _new position in parent genome = 4 + (-3) = 2_  
+   _get value in parent genome at position 2_  
 
 ![Changelog Gif](https://i.imgur.com/djVEX3n.gif)  
 **Figure Generating the Offspring Genome.** 
