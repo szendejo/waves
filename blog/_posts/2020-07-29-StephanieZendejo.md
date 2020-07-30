@@ -8,19 +8,22 @@ author: Stephanie Zendejo
 # My Approach To The Changelog Problem
 > Changelog problem? An introduction to MABE and the problem can be found [here!](https://szendejo.github.io/waves/blog/Team-MABE.html)  
 
+In summary, I created a changelog that was represented as an ordered map.  The changelog stores values, and mutation offsets. To generate an offspring genome, the changelog is referenced. An index that tracks the position of sites in the parent genome is modified according to the offsets stored in the changelog. Values to the offspring genome are either assigned by the parent genome if they are not entries in the changelog, or by the changelog.
+
 The parent genome is represented as a **std::vector** of sites. Each site in the parent genome contains a numeric value that is represented as a **std::byte** in memory. The position of the site in the parent genome is the **index**. A changelog is represented as an **ordered std::map<size_t, Site>**. Size_t is the index of the site mutated, and Site is the struct to contain the mutated site's information. The Site struct identifies what type of mutation has been applied to the site, and what the new value is (if applicable).  
 ```c++
 struct Site {
-	size_t insertOffset;  	  // insert mutation at site
-	size_t removeOffset;   	  // remove mutation at site
-	std::byte value;       	  // mutated number value
+	size_t insertOffset;  	  // Insert mutation at site
+	size_t removeOffset;   	  // Remove mutation at site
+	std::byte value;       	  // Mutated number value
 };	
-std::map<size_t, Site> changelog; // key is index of site in the parent genome
-                                  // value is Site structure
+std::map<size_t, Site> changelog; // Map key is index of site in the parent genome
+                                  // Map value is Site structure
 std::vector<std::byte> sites;     // parent genome
 ```  
 <!-- ![Parent Genome in all its glory](https://i.imgur.com/mekOG1s.png) -->
 <img src="https://i.imgur.com/mekOG1s.png" width="600" height="65" border="10" />  
+
 **Figure Parent Genome.** Parent Genome contains values at each of its sites.  
 
 ### Mutation Signatures
@@ -108,7 +111,19 @@ Let's apply some basic mutations to a parent genome.
 |  5  |     11     |       0        |       0       |    
 |  6  |      0     |       3        |       0       |   
 
-> _Starting at index 6, sites 6 7 and 8 will be removed. Sites 6 and 7 exist in the Changelog. They are not insert or remove mutations so they can be easily removed. A new entry is added at site 6, with a Remove Offset of 3._
+> _Starting at index 6, sites 6 7 and 8 will be removed. Sites 6 and 7 exist in the Changelog. They are not insert or remove mutations so they can be easily removed. A new entry is added at site 6, with a Remove Offset of 3._    
+
+4. Insert mutation to site at index 6. The inserted site will have values of 88, 99.  
+
+| Key | Site Value | Remove Offset  | Insert Offset |   
+| --- |:----------:|:--------------:| -------------:|  
+|  1  |     44     |       0        |       1       |    
+|  2  |     55     |       0        |       1       |    
+|  3  |     66     |       0        |       1       |   
+|  5  |     11     |       0        |       0       |    
+|  6  |      0     |       3        |       0       |   
+
+> _Shift all sites in the Changelog to the right by 2, the number of sites inserted. Site at key 6 becomes site at key 8. Add entries to the Changelog map starting at index 6 with their values. Because these are insert mutations, Insert Offset is set to 1. Offspring genome size increases by 2._  
 
 Great! All mutations have been recorded. Much like this rendition of Celine Dion's _My Heart Will Go On_,  
 
@@ -119,7 +134,7 @@ alt="Flute Rendition of My Heart Will Go On" width="450" height="240" border="10
 this genome ~~heart~~ will go on to the next generation.
 
 ### Generating The Offspring Genome  
-A **std::vector** named **modifiedSites** contains the offspring genome. Each position in the modifiedSites vector will be populated from either the changelog if an entry exists, or from the parent genome. Every insert mutation in the changelog increases the parent genome size by one. Every remove mutation in the changelog decreases the parent genome by the number of sites removed.  
+A **std::vector** named **modifiedSites** contains the offspring genome. Each position in the modifiedSites vector will be populated from either the changelog if an entry exists, or from the parent genome. Every insert mutation in the changelog increases the parent genome size by one. Every remove mutation in the changelog decreases the parent genome by the number of sites removed. **Offset** represented as an integer, keeps track of the position difference between the parent genome and the offspring genome.
 ```c
 void StephanieGenome::generateNewGenome() {
 	modifiedSites.resize(genomeSize);
