@@ -134,7 +134,7 @@ Let's apply some basic mutations to a parent genome.
    |  1  |     44     |       0        |       1       |    
    |  2  |     55     |       0        |       1       |    
    |  3  |     66     |       0        |       1       |   
-   |  6  |      0     |       3        |       0       |   
+   |  5  |      0     |       3        |       0       |   
    
    > _Starting at index 5, sites 5 6 7 will be removed. The affected overwrite and insert mutations sites are removed. The remaining sites in the changelog are shifted over to the left by 3, the number of sites removed. Site at key 8 becomes site at key 5._     
   
