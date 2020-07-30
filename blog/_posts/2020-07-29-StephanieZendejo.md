@@ -182,10 +182,10 @@ void StephanieGenome::generateNewGenome() {
 }
 ```  
 A position counter starts at 0 in the parent genome. An index counter starts at 0 in the offspring genome and begins populating the sites.  
-* Index exists in changelog, type of mutation is identified   
+* **Index exists in changelog**, type of mutation is identified   
    * Insert mutation, offset is subtracted by one  
    * Remove mutation, offset is added by the remove offset value   
-* Index does not exist in changelog, new position of the parent genome is calculated  
+* **Index does not exist in changelog**, new position of the parent genome is calculated  
    * New position = index + offset.  
    _ex. index 4 does not exist in the changelog and the offset = -3_  
    _new position in parent genome = 4 + (-3) = 2_  
