@@ -207,10 +207,7 @@ Although the speeds are somewhat similar for overwrite and insert mutations, the
 
 ## Conclusion
 In summary, implementing the proposed solution proved to be less efficient than the naive solution. I learned benchmarking is key to figuring out the best implementation for code. Despite the fact that each team member implemented a unique solution, discussing implementations allowed us to bounce ideas off one another and ask plenty of questions. Many brains is better than one! Research may not always give the preferred answer, but the learning experience is invaluable. To quote Zora Neale Hurston, _"Research is formalized curiosity. It is poking and prying with a purpose."_  
- 
   
-![We did it folks](https://media.giphy.com/media/XreQmk7ETCak0/giphy.gif)
- 
 # Acknowledgements  
 I would like to give a sincere thank you to my mentors, my team members, and the WAVES Workshop for the wonderful experience! :smile: I have gained a deeper understanding of how to design and implement algorithms, harness the power of the C++ standard library, and optimize code. 
 
