@@ -5,11 +5,12 @@ date: 2020-07-29
 author: Stephanie Zendejo
 ---
 
-# My Approach To The Changelog Problem
-> Changelog problem? An introduction to MABE and the problem can be found [here!](https://szendejo.github.io/waves/blog/Team-MABE.html)  
+# Introduction
+I designed a genome class named StephanieGenome in MABE. The goal was to improve the time and memory taken to process genome mutations. Genomes in MABE were copied over from a parent genome to an offspring genome at every generation. The offspring genome at the last generation would contain a mutated parent genome. I implemented a way to reduce the number of copies at every generation by using a changelog. The changelog stores values, and offsets for multiple types of mutations. In order to generate a offspring genome, the changelog is referenced and applied to the parent genome. 
 
-In summary, I created a changelog that was represented as an ordered map.  The changelog stores values, and mutation offsets. To generate an offspring genome, the changelog is referenced. An index that tracks the position of sites in the parent genome is modified according to the offsets stored in the changelog. Values to the offspring genome are either assigned by the parent genome if they are not entries in the changelog, or by the changelog.
+> Changelog? Huh? An introduction to MABE and the problem can be found [here!](https://szendejo.github.io/waves/blog/Team-MABE.html)  
 
+# My Approach To The Changelog Problem  
 The parent genome is represented as a **std::vector** of sites. Each site in the parent genome contains a numeric value that is represented as a **std::byte** in memory. The position of the site in the parent genome is the **index**. A changelog is represented as an **ordered std::map<size_t, Site>**. Size_t is the index of the site mutated, and Site is the struct to contain the mutated site's information. The Site struct identifies what type of mutation has been applied to the site, and what the new value is (if applicable).  
 ```c++
 struct Site {
@@ -27,7 +28,7 @@ std::vector<std::byte> sites;     // parent genome
 **Figure Parent Genome.** Parent Genome contains values at each of its sites.  
 
 ### Mutation Signatures
-Here's a basic idea of what each of the functions do. I followed the mantra of _when in doubt, shift it out_. To view the mutations in action, click on the linked images.  
+Here's a basic idea of what each of the functions do. To view the mutations in action, click on the linked images.  
 **Overwrite**  
   * Loops through segment vector
   * Adds overwrite mutations to the changelog  
@@ -196,22 +197,21 @@ A position counter starts at 0 in the parent genome. An index counter starts at 
 
 # Time vs. Memory  
 ## Benchmarking  
-Talk about benchmarks  
-Insert Graphs
-## Optimization  
-Talk about improving the code itself
+Let's put StephanieGenome to the test and compare it to TestGenome. TestGenome is an implementation of the naive approach. Mutations were applied to genomes at the mutation rate of 0.001. The mutation rate modifies the starting values of the parent genome. The genome sizes were 5,000 through 100,000 std::bytes.
+![Overwrite Graph](https://i.imgur.com/HZAmJjL.png)  
+![Insert Graph](https://i.imgur.com/13sT2cI.png)  
+![Remove Graph](https://i.imgur.com/hMD6uwP.png)  
 
 ## Verdict  
-Talk about how the Test Genome is ultimately faster ;__;
+Although the speeds are somewhat similar for overwrite and insert mutations, there is a significant slowdown for remove mutations. TestGenome is found to be faster. The StephanieGenome solution is not optimal for a random access model because of the need to call generateNewGenome() to create the offspring genome. However, it has potential use using a gene centric view. In the gene centric view, only the details about the genomes are needed. The details would be where the genes are in a genome (changelog entries) and what is in the genome that is not a part of the gene (changelog entries with remove offsets).  
 
-# Lessons Learned  
-Talk about lessons learned  
+In summary, implementing the proposed solution proved to be less efficient than the naive solution. Research may not always give the preferred answer, but the learning experience is invaluable. To quote Zora Neale Hurston, _"Research is formalized curiosity. It is poking and prying with a purpose."_  
 
-# Acknowledgements
+# Acknowledgements  
+I would like to give a sincere thank you to my mentors, my team members, and the WAVES Workshop for the wonderful experience. I have gained a better understanding of how to design and implement algorithms, harness the power of the C++ standard library, and optimize code. 
+
 **Mentors:** Clifford Bohm, Jory Schossau, Jose Hernandez  
 **Team Members:** Jamell Dacon, Tetiana Dadakova, Victoria Cao, Uma Sethuraman  
 
 This work is supported through Active LENS: Learning Evolution and the Nature of Science using Evolution in Action (NSF IUSE #1432563). Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation.
-
-# Resources
 
