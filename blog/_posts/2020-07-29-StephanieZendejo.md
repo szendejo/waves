@@ -205,7 +205,7 @@ Let's put StephanieGenome to the test and compare it to TestGenome. TestGenome i
 ## Verdict  
 Although the speeds are somewhat similar for overwrite and insert mutations, there is a significant slowdown for remove mutations. TestGenome is found to be faster. The StephanieGenome solution is not optimal for a random access model because of the need to call generateNewGenome() to create the offspring genome. However, it has potential use using a gene centric view. In the gene centric view, only the details about the genomes are needed. The details would be where the genes are in a genome (changelog entries) and what is in the genome that is not a part of the gene (changelog entries with remove offsets).  
 
-In summary, implementing the proposed solution proved to be less efficient than the naive solution. Research may not always give the preferred answer, but the learning experience is invaluable. To quote Zora Neale Hurston, _"Research is formalized curiosity. It is poking and prying with a purpose."_  
+In summary, implementing the proposed solution proved to be less efficient than the naive solution. Research may not always give the preferred answer, but the learning experience is invaluable. To quote Zora Neale Hurston, _"Research is formalized curiosity. It is poking and prying with a purpose."_ :)
 
 # Acknowledgements  
 I would like to give a sincere thank you to my mentors, my team members, and the WAVES Workshop for the wonderful experience. I have gained a better understanding of how to design and implement algorithms, harness the power of the C++ standard library, and optimize code. 
