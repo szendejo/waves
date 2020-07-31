@@ -207,7 +207,7 @@ Although the speeds are somewhat similar for overwrite and insert mutations, the
 
 ## Conclusion
 In summary, implementing the proposed solution proved to be less efficient than the naive solution. Research may not always give the preferred answer, but the learning experience is invaluable. To quote Zora Neale Hurston, _"Research is formalized curiosity. It is poking and prying with a purpose."_ I learned benchmarking is key to figuring out the best implementation for code. 
-
+ 
 # Acknowledgements  
 I would like to give a sincere thank you to my mentors, my team members, and the WAVES Workshop for the wonderful experience. I have gained a better understanding of how to design and implement algorithms, harness the power of the C++ standard library, and optimize code. 
 
